@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.startActivity
 import party.iobserver.matchsimulator.BuildConfig
 import party.iobserver.matchsimulator.R
-import party.iobserver.matchsimulator.ui.MainActivity
 
 /**
  * Created by ZeroGo on 2017/8/20.
@@ -23,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = getColor(R.color.colorPrimaryLight)
 
-        splash_version.text = BuildConfig.VERSION_NAME
+        version.text = BuildConfig.VERSION_NAME
 
         Handler().postDelayed({
             startActivity<MainActivity>()
