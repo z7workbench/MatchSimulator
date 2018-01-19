@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Match Simulator</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_match">Add Match</string>
+    <string name="title_match">Matches</string>
+    <string name="title_team">Teams</string>
+    <string name="teams_attack">Attack</string>
+    <string name="teams_defence">Defence</string>
+</resources>

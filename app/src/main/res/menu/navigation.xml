@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item
+    android:id="@+id/navigation_team"
+    android:icon="@drawable/ic_assignment_ind_24dp"
+    android:orderInCategory="0"
+    android:title="@string/title_team" />
+
+<item
+    android:id="@+id/navigation_match"
+    android:icon="@drawable/ic_view_list_24dp"
+    android:orderInCategory="1"
+    android:title="@string/title_match" />
+</menu>

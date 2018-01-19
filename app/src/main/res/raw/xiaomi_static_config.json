@@ -1,0 +1,11 @@
+{
+  data: [
+    {
+      title: "",
+      desc: "",
+      type: "",
+      image: "",
+      intent: ""
+    }
+  ]
+}
