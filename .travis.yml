@@ -1,0 +1,38 @@
+language: android
+
+git:
+  depth: 9999999
+
+jdk: oraclejdk8
+android:
+  components:
+  - tools
+  - tools
+  - build-tools-27.0.3
+  - android-27
+
+before_install:
+- chmod +x gradlew
+- openssl aes-256-cbc -K $encrypted_2d0f7941cd15_key -iv $encrypted_2d0f7941cd15_iv
+  -in zero-own-keystore.jks.enc -out zero-own-keystore.jks -d
+- gem install fir-cli
+- yes | sdkmanager "platforms;android-27"
+
+script:
+- "./gradlew assembleRelease"
+
+deploy:
+  provider: releases
+  file: app/build/outputs/apk/release/app-release.apk
+  api_key:
+    secure: x+jff3vJZt8A+pUU3hoQYOGR65cP9kCNqiBi3Z/d/nu5CzrUbX92M4KPfgJKtP6ve8PHxY7Grtwga0mizvbzbe0mwvjYK/sy6ohAZkA7EAKyLxw8CSqyw66qBPz/AYWYVPIMAym2cyLispSFJ5kqnBJlDlYzThehKAMXZKUfH3t2t3pso/EjCDPLgpopfJj5v9vOVYkLG5KzimO6vmuk/9z/N47BSiXDHJ8AWqn0FZhkynLwEyU3YXQ8EFD2wchelzB42YNgt8Gre2xQ7bm/t3bS9DLKA15edbDxM9vGfhRcCJTfFdllsq5fZsMnCpGaBGez+yMAXAJrvJoFR2wpDrVe/VsFN1QJ+t/3aS8IfgkUtj31os7OqI77zU0xeVGBqzEg4yZauLwT5YiH7QiKvgAEYxeh4auPS62zL7CXVcYVbBWz44BfpkG/j/fHmC0/0d5UBKnBzVgkqW4Jf+eOAheLj25IYjIU5vc2QzxxhAyRJBvDLU9phvbUYRUsOlDCd/LNT9IO2izJCs9cIKDnbpJJ4e0TZYuZd7+DfEEr75o1s1IB7C1XvW0NAr66mlCBXlgYXhHHUKUSbCEmGql29DMYS0zH8aSaZhx/7XUCawG43atm7y0U7zSLd+AEVj13WESSziVNdsXRZc9WqUG5LNWjA+Zru+RxWTalDCYMWmM=
+  overwrite: true
+  skip_cleanup: true
+  on:
+    repo: ZeroGoYoosee/MatchSimulator
+    tags: true
+
+after_script:
+- fir login $fir_token
+- fir p app/build/outputs/apk/release/app-release.apk
+
