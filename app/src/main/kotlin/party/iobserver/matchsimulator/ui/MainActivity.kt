@@ -8,6 +8,9 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import party.iobserver.matchsimulator.Constants
 import party.iobserver.matchsimulator.R
+import party.iobserver.matchsimulator.app
+import party.iobserver.matchsimulator.util.AlertEnum
+import party.iobserver.matchsimulator.util.showSimpleDialog
 
 class MainActivity : AppCompatActivity() {
     var menuItem: MenuItem? = null
@@ -43,6 +46,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_me -> viewPager.currentItem = Constants.ME
             }
             return@setOnNavigationItemSelectedListener true
+        }
+
+        if (app.prefs.getInt("cash", 0) <= 0) {
+            showSimpleDialog(this, AlertEnum.HINT, R.string.if_no_cash)
+            app.prefs.edit().putInt("cash", 5000).apply()
         }
     }
 

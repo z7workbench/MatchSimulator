@@ -14,4 +14,5 @@
     <string name="dialog_positive">OK</string>
     <string name="dialog_negative">Cancel</string>
     <string name="title_me">Me</string>
+    <string name="if_no_cash">We found that you don\'t have enough cash, so here is 5000 cash!</string>
 </resources>
