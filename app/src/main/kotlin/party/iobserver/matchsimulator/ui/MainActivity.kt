@@ -1,19 +1,49 @@
 package party.iobserver.matchsimulator.ui
 
 import android.os.Bundle
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import party.iobserver.matchsimulator.Constants
 import party.iobserver.matchsimulator.R
 
 class MainActivity : AppCompatActivity() {
+    var menuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        viewPager.adapter = FragmentsAdapter(supportFragmentManager)
+
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                menuItem?.isChecked = false
+                if (menuItem == null) {
+                    navigation.menu.getItem(Constants.TEAMS).isChecked = false
+                }
+                menuItem = navigation.menu.getItem(position)
+                menuItem!!.isChecked = true
+            }
+        })
+
+        navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_team -> viewPager.currentItem = Constants.TEAMS
+                R.id.navigation_match -> viewPager.currentItem = Constants.MATCHES
+                R.id.navigation_me -> viewPager.currentItem = Constants.ME
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -11,6 +11,7 @@ object Constants {
 
     val TEAMS = 0
     val MATCHES = 1
+    val ME = 2
 
     val MATCH_ADD = "New Match"
     val TEAM_ADD = "New Team"
@@ -19,5 +20,5 @@ object Constants {
     val REQUEST_CODE_MATCHES = 2
 
     val URI_AUTHOR = "https://github.com/ZeroGoYoosee"
-    val URI_APP = "https://github.com/ZeroGoYoosee/Match-Simulator"
+    val URI_APP = "https://github.com/ZeroGoYoosee/MatchSimulator"
 }
