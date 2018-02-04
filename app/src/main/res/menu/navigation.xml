@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_team"
-        android:icon="@drawable/ic_people_24dp"
+        android:icon="@drawable/ic_group_fill"
         android:orderInCategory="0"
         android:title="@string/title_team" />
 
     <item
         android:id="@+id/navigation_match"
-        android:icon="@drawable/ic_view_list_24dp"
+        android:icon="@drawable/ic_createtask"
         android:orderInCategory="1"
         android:title="@string/title_match" />
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_account_circle_24dp"
+        android:icon="@drawable/ic_mine_fill"
         android:orderInCategory="2"
         android:title="@string/title_me" />
 </menu>

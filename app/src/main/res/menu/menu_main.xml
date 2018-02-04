@@ -6,13 +6,13 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        android:icon="@drawable/ic_settings_24dp"
+        android:icon="@drawable/ic_setup"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_add"
         android:orderInCategory="1"
         android:title="@string/action_add"
-        android:icon="@drawable/ic_add_circle_24dp"
+        android:icon="@drawable/ic_add"
         app:showAsAction="ifRoom" />
 </menu>

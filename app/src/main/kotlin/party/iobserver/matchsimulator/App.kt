@@ -5,6 +5,7 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.support.v4.app.Fragment
 import party.iobserver.matchsimulator.database.SimDatabase
 
 /**
@@ -23,3 +24,6 @@ class SimApp : Application() {
 
 val Activity.app: SimApp
     get() = this.application as SimApp
+
+val Fragment.app: SimApp
+    get() = this.activity?.application as SimApp

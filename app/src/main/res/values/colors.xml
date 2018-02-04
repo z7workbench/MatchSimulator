@@ -6,8 +6,12 @@
     <color name="colorSecondary">#ffc107</color>
     <color name="colorSecondaryDark">#c79100</color>
     <color name="colorSecondaryLight">#fff350</color>
-    <color name="colorAccent">#c79100</color>
-    <color name="colorAccentOld">#FF4081</color>
+    <color name="colorAccent">#FF4081</color>
 
-    <color name="colorWhiteDark">#afafaf</color>
+    <color name="lightPink">#f48fb1</color>
+    <color name="lightBlue">#81d4fa</color>
+
+    <color name="orange">#ffa040</color>
+    <color name="darkOrange">#ff6f00</color>
+    <color name="darkGrey">#ebebeb</color>
 </resources>

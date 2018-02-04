@@ -15,4 +15,7 @@
     <string name="dialog_negative">取消</string>
     <string name="title_me">我的</string>
     <string name="if_no_cash">检测到您没有启动资金，现赠与您5000启动资金！</string>
+    <string name="me_expenses">消费记录</string>
+    <string name="me_cash">资金：</string>
+    <string name="redeem">兑换代码</string>
 </resources>

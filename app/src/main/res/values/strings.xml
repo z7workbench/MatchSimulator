@@ -15,4 +15,7 @@
     <string name="dialog_negative">Cancel</string>
     <string name="title_me">Me</string>
     <string name="if_no_cash">We found that you don\'t have enough cash, so here is 5000 cash!</string>
+    <string name="me_expenses">Expenses</string>
+    <string name="me_cash">Cash:\u0020</string>
+    <string name="redeem">Redeem Code</string>
 </resources>
