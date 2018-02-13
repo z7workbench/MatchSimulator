@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">比赛模拟器</string>
-    <string name="action_settings">设置</string>
     <string name="title_match">比赛</string>
     <string name="title_team">队伍</string>
     <string name="app_designer">ZeroGo 出品</string>
@@ -21,4 +20,5 @@
     <string name="me_show_expenses">显示所有消费记录</string>
     <string name="me_about">关于</string>
     <string name="me_about_summary">关于这个应用</string>
+    <string name="me_settings">设置</string>
 </resources>

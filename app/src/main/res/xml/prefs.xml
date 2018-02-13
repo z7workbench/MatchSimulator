@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <Preference
-        android:key="expenses"
-        android:summary="@string/me_show_expenses"
-        android:title="@string/me_expenses" />
+    <PreferenceCategory android:title="@string/me_settings">
+        <Preference
+            android:key="expenses"
+            android:summary="@string/me_show_expenses"
+            android:icon="@drawable/ic_expenses"
+            android:title="@string/me_expenses" />
 
-    <Preference
-        android:key="about"
-        android:summary="@string/me_about_summary"
-        android:title="@string/me_about" />
-
-
+        <Preference
+            android:key="about"
+            android:icon="@drawable/ic_prompt"
+            android:summary="@string/me_about_summary"
+            android:title="@string/me_about" />
+    </PreferenceCategory>
 </PreferenceScreen>
