@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="expenses"
+        android:summary="@string/me_show_expenses"
+        android:title="@string/me_expenses" />
+
+    <Preference
+        android:key="about"
+        android:summary="@string/me_about_summary"
+        android:title="@string/me_about" />
+
+
+</PreferenceScreen>

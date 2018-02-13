@@ -18,4 +18,7 @@
     <string name="me_expenses">消费记录</string>
     <string name="me_cash">资金：</string>
     <string name="redeem">兑换代码</string>
+    <string name="me_show_expenses">显示所有消费记录</string>
+    <string name="me_about">关于</string>
+    <string name="me_about_summary">关于这个应用</string>
 </resources>

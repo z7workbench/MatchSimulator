@@ -18,4 +18,7 @@
     <string name="me_expenses">Expenses</string>
     <string name="me_cash">Cash:\u0020</string>
     <string name="redeem">Redeem Code</string>
+    <string name="me_show_expenses">Show all expenses</string>
+    <string name="me_about">About</string>
+    <string name="me_about_summary">About the App</string>
 </resources>

@@ -3,6 +3,7 @@ package party.iobserver.matchsimulator.ui
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v7.preference.PreferenceFragmentCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class MatchesFragment : Fragment() {
     private lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_matches, container, false)
+
         return rootView
     }
 
@@ -36,6 +38,9 @@ class MeFragment : Fragment() {
             hideOrNot(true)
         }
         hideOrNot(false)
+        fragmentManager!!.beginTransaction()
+                .replace(R.id.content, SettingsFragment())
+                .commit()
         return rootView
     }
 
@@ -62,4 +67,11 @@ class MeFragment : Fragment() {
             }
         }
     }
+
+    class SettingsFragment : PreferenceFragmentCompat() {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            addPreferencesFromResource(R.xml.prefs)
+        }
+    }
+
 }
