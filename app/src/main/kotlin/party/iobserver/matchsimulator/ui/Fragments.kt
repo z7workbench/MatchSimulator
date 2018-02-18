@@ -1,7 +1,9 @@
 package party.iobserver.matchsimulator.ui
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,6 +22,7 @@ import party.iobserver.matchsimulator.R
 import party.iobserver.matchsimulator.app
 import party.iobserver.matchsimulator.util.GlideEngine
 import party.iobserver.matchsimulator.util.MatisseUtil
+
 
 class TeamsFragment : Fragment() {
     private lateinit var rootView: View
@@ -41,7 +44,8 @@ class MatchesFragment : Fragment() {
 }
 
 class MeFragment : Fragment() {
-    val MATISSE_CODE = 1
+    private val MATISSE_CODE = 1
+    private val ASK_PERMISSION = 2
     private var uris = listOf<Uri>()
     private lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,16 +53,19 @@ class MeFragment : Fragment() {
         rootView.hideAndShow.setOnClickListener {
             hideOrNot(true)
         }
-
         hideOrNot(false)
 
         fragmentManager!!.beginTransaction()
                 .replace(R.id.content, SettingsFragment())
                 .commit()
 
-
         val avatar = app.prefs.getString("avatar", null)
         rootView.avatar_view.setOnClickListener {
+            val hasPermission = activity!!.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+            if (hasPermission != PackageManager.PERMISSION_GRANTED) {
+                activity!!.requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), ASK_PERMISSION)
+                return@setOnClickListener
+            }
             MatisseUtil.selectFromFragment(this, 1, MATISSE_CODE)
         }
 
@@ -82,6 +89,12 @@ class MeFragment : Fragment() {
                     .into(avatar_view)
             app.prefs.edit().putString("avatar", uris[0].toString()).apply()
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == ASK_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            MatisseUtil.selectFromFragment(this, 1, MATISSE_CODE)
+        } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun hideOrNot(edit: Boolean) {
