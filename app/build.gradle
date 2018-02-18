@@ -16,7 +16,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.0-alpha2"
+        versionName "1.0.0-alpha3"
         versionNameSuffix = " (${gitCommitCount})"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -58,12 +58,15 @@ dependencies {
     implementation "com.android.support:design:$android_support_libs"
     implementation "com.github.medyo:fancybuttons:1.8.4"
     implementation "com.github.bumptech.glide:glide:4.6.1"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.6.1"
+    kapt 'com.github.bumptech.glide:compiler:4.6.1'
     implementation "com.zhihu.android:matisse:0.4.3"
+
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.0.1'
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.1.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+    kapt "android.arch.lifecycle:compiler:1.1.0"
     // Room
     implementation "android.arch.persistence.room:runtime:1.0.0"
     kapt "android.arch.persistence.room:compiler:1.0.0"

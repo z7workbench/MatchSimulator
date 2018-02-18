@@ -27,4 +27,9 @@
         <item name="android:windowEnterAnimation">@anim/zoom_in_enter</item>
         <item name="android:windowExitAnimation">@anim/zoom_out_exit</item>
     </style>
+
+    <style name="AppTheme.Matisse" parent="Matisse.Zhihu">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 </resources>

@@ -6,6 +6,8 @@ import android.arch.persistence.room.Room
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import party.iobserver.matchsimulator.database.SimDatabase
 
 /**
@@ -21,6 +23,9 @@ class SimApp : Application() {
         appDatabase = Room.databaseBuilder(this, SimDatabase::class.java, "sim.db").allowMainThreadQueries().build()
     }
 }
+
+@GlideModule
+class GlideModule : AppGlideModule()
 
 val Activity.app: SimApp
     get() = this.application as SimApp
