@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_s"
+        android:paddingEnd="@dimen/size_l"
+        android:paddingStart="@dimen/size_l"
+        android:paddingTop="@dimen/padding_l">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/team_attack"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/size_m" />
+
+        <TextView
+            android:id="@+id/dialog_properties_attack_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="@dimen/size_m" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/dialog_properties_attack_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="300"
+        android:paddingEnd="@dimen/size_xl"
+        android:paddingStart="@dimen/size_xl" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_s"
+        android:paddingEnd="@dimen/size_l"
+        android:paddingStart="@dimen/size_l"
+        android:paddingTop="@dimen/padding_s">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/team_defence"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/size_m" />
+
+        <TextView
+            android:id="@+id/dialog_properties_defence_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="@dimen/size_m" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/dialog_properties_defence_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="300"
+        android:paddingEnd="@dimen/size_xl"
+        android:paddingStart="@dimen/size_xl" />
+
+</LinearLayout>

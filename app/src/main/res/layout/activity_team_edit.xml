@@ -27,7 +27,8 @@
             android:id="@+id/name_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/team_name" />
+            android:hint="@string/team_name"
+            android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
@@ -79,7 +80,9 @@
             android:id="@+id/alias_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/team_alias" />
+            android:hint="@string/team_alias"
+            android:maxLength="4"
+            android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
     <TextView

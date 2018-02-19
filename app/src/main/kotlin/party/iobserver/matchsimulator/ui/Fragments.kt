@@ -9,6 +9,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,20 +20,52 @@ import com.bumptech.glide.request.RequestOptions
 import com.zhihu.matisse.Matisse
 import kotlinx.android.synthetic.main.fragment_me.*
 import kotlinx.android.synthetic.main.fragment_me.view.*
+import kotlinx.android.synthetic.main.fragment_teams.view.*
 import party.iobserver.matchsimulator.GlideApp
 import party.iobserver.matchsimulator.R
 import party.iobserver.matchsimulator.app
+import party.iobserver.matchsimulator.model.Team
 import party.iobserver.matchsimulator.util.GlideEngine
 import party.iobserver.matchsimulator.util.MatisseUtil
 
 
 class TeamsFragment : Fragment() {
+    lateinit var list: MutableList<Team>
     private lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_teams, container, false)
+        list = app.appDatabase.teamDao().all()
+        val llm = LinearLayoutManager(context)
+        val teamsAdapter = TeamsAdapter(list, activity!!, app, object : CountChangeListener {
+            override fun onCountChange(count: Int) {
+                if (count == 0) {
+                    rootView.placeholder.visibility = View.VISIBLE
+                } else {
+                    rootView.placeholder.visibility = View.GONE
+                }
+            }
+        })
+
+        llm.orientation = LinearLayoutManager.VERTICAL
+        val decoration = DividerItemDecoration(activity, llm.orientation)
+        rootView.recycler.apply {
+            layoutManager = llm
+            adapter = teamsAdapter
+            itemAnimator = DefaultItemAnimator()
+            addItemDecoration(decoration)
+        }
+        (rootView.recycler.adapter as TeamsAdapter).list
         return rootView
     }
 
+    override fun onResume() {
+        super.onResume()
+        rootView.apply {
+            (recycler.adapter as TeamsAdapter).list = app.appDatabase.teamDao().all()
+            recycler.adapter.notifyDataSetChanged()
+            (recycler.adapter as TeamsAdapter).listener.onCountChange(recycler.adapter.itemCount)
+        }
+    }
 }
 
 class MatchesFragment : Fragment() {

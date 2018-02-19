@@ -29,4 +29,8 @@
     <string name="team_defence">防御力*:</string>
     <string name="new_team">新队伍</string>
     <string name="edit_team">编辑</string>
+    <string name="placeholder_description">尴尬，这里是空的哟！</string>
+    <string name="dialog_msg_the_same_name">队伍名称或缩写已被使用过！</string>
+    <string name="dialog_msg_confirm_edit">确认保存更改？</string>
+    <string name="dialog_msg_delete">你确定要删除吗？</string>
 </resources>

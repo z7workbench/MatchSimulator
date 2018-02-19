@@ -24,9 +24,13 @@
     <string name="required">Items marked as * are required</string>
     <string name="color">Color</string>
     <string name="team_name">Team Name*</string>
-    <string name="team_alias">Team Abbreviation(In 4 letters)*</string>
+    <string name="team_alias">Team Abbreviation(in 4 letters)*</string>
     <string name="team_attack">Attack*:</string>
     <string name="team_defence">Defence*:</string>
     <string name="new_team">New Team</string>
     <string name="edit_team">Edit</string>
+    <string name="placeholder_description">Whoops, it is empty!</string>
+    <string name="dialog_msg_the_same_name">This team\'s name or abbreviation has been used!</string>
+    <string name="dialog_msg_confirm_edit">Are you want to confirm changes?</string>
+    <string name="dialog_msg_delete">Are you want to delete?</string>
 </resources>
