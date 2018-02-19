@@ -21,4 +21,12 @@
     <string name="me_about">关于</string>
     <string name="me_about_summary">关于这个应用</string>
     <string name="me_settings">设置</string>
+    <string name="required">代*的内容为必填内容</string>
+    <string name="color">颜色</string>
+    <string name="team_name">队伍名称*</string>
+    <string name="team_alias">队伍缩写（最多4个英文字母）*</string>
+    <string name="team_attack">攻击力*:</string>
+    <string name="team_defence">防御力*:</string>
+    <string name="new_team">新队伍</string>
+    <string name="edit_team">编辑</string>
 </resources>

@@ -21,6 +21,12 @@ interface TeamDao {
     @Query("select * from teams")
     fun all(): MutableList<Team>
 
+    @Query("select * from teams where name = :name or alias = :alias")
+    fun findByName(name: String, alias: String): MutableList<Team>
+
+    @Query("select * from teams where id = :id")
+    fun findById(id: Int): MutableList<Team>
+
     @Insert
     fun insert(team: Team)
 

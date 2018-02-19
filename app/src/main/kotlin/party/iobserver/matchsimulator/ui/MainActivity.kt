@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivityForResult
 import party.iobserver.matchsimulator.Constants
 import party.iobserver.matchsimulator.R
 import party.iobserver.matchsimulator.app
@@ -13,6 +14,7 @@ import party.iobserver.matchsimulator.util.AlertEnum
 import party.iobserver.matchsimulator.util.showSimpleDialog
 
 class MainActivity : AppCompatActivity() {
+    val NEW_TEAM = 1
     var menuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,24 +22,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        viewPager.adapter = FragmentsAdapter(supportFragmentManager)
-
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                menuItem?.isChecked = false
-                if (menuItem == null) {
-                    navigation.menu.getItem(Constants.TEAMS).isChecked = false
+        viewPager.apply {
+            adapter = FragmentsAdapter(supportFragmentManager)
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 }
-                menuItem = navigation.menu.getItem(position)
-                menuItem!!.isChecked = true
-            }
-        })
+
+                override fun onPageScrollStateChanged(state: Int) {
+                }
+
+                override fun onPageSelected(position: Int) {
+                    menuItem?.isChecked = false
+                    if (menuItem == null) {
+                        navigation.menu.getItem(Constants.TEAMS).isChecked = false
+                    }
+                    menuItem = navigation.menu.getItem(position)
+                    menuItem!!.isChecked = true
+                }
+            })
+        }
 
         navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -66,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_add -> {
+                startActivityForResult<TeamEditActivity>(NEW_TEAM, "flag" to true)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -21,4 +21,12 @@
     <string name="me_about">About</string>
     <string name="me_about_summary">About the App</string>
     <string name="me_settings">Settings</string>
+    <string name="required">Items marked as * are required</string>
+    <string name="color">Color</string>
+    <string name="team_name">Team Name*</string>
+    <string name="team_alias">Team Abbreviation(In 4 letters)*</string>
+    <string name="team_attack">Attack*:</string>
+    <string name="team_defence">Defence*:</string>
+    <string name="new_team">New Team</string>
+    <string name="edit_team">Edit</string>
 </resources>

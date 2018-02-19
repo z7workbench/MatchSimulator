@@ -16,7 +16,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.0-alpha3"
+        versionName "1.0.0-alpha4"
         versionNameSuffix = " (${gitCommitCount})"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -63,6 +63,7 @@ dependencies {
 
     implementation 'com.github.hotchemi:permissionsdispatcher:3.0.1'
     kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
+    implementation 'com.jrummyapps:colorpicker:2.1.7'
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.1.0"

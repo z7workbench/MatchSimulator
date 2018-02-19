@@ -50,16 +50,23 @@ class MeFragment : Fragment() {
     private lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_me, container, false)
-        rootView.hideAndShow.setOnClickListener {
-            hideOrNot(true)
-        }
-        hideOrNot(false)
-
+        val avatar = app.prefs.getString("avatar", null)
         fragmentManager!!.beginTransaction()
                 .replace(R.id.content, SettingsFragment())
                 .commit()
 
-        val avatar = app.prefs.getString("avatar", null)
+        rootView.apply {
+            hideAndShow.setOnClickListener {
+                hideOrNot(true)
+            }
+            GlideApp.with(this)
+                    .load(avatar)
+                    .apply(GlideEngine.options)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(avatar_view)
+        }
+        hideOrNot(false)
+
         rootView.avatar_view.setOnClickListener {
             val hasPermission = activity!!.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
             if (hasPermission != PackageManager.PERMISSION_GRANTED) {
@@ -68,12 +75,6 @@ class MeFragment : Fragment() {
             }
             MatisseUtil.selectFromFragment(this, 1, MATISSE_CODE)
         }
-
-        GlideApp.with(this)
-                .load(avatar)
-                .apply(GlideEngine.options)
-                .apply(RequestOptions.circleCropTransform())
-                .into(rootView.avatar_view)
         return rootView
     }
 
@@ -100,8 +101,10 @@ class MeFragment : Fragment() {
     private fun hideOrNot(edit: Boolean) {
         val hide = app.prefs.getBoolean("hide", true)
         if ((!hide && edit) || (hide && !edit)) {
-            rootView.hideAndShow.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_show))
-            rootView.cash.setText(getString(R.string.me_cash) + "****")
+            rootView.apply {
+                hideAndShow.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_show))
+                cash.setText(getString(R.string.me_cash) + "****")
+            }
             if (edit) {
                 val editor = app.prefs.edit()
                 editor.putBoolean("hide", true)
@@ -109,9 +112,11 @@ class MeFragment : Fragment() {
             }
 
         } else {
-            rootView.hideAndShow.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_hide))
             val cashInt: Int = app.prefs.getInt("cash", 0)
-            rootView.cash.setText(getString(R.string.me_cash) + cashInt)
+            rootView.apply {
+                hideAndShow.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_hide))
+                cash.setText(getString(R.string.me_cash) + cashInt)
+            }
             if (edit) {
                 val editor = app.prefs.edit()
                 editor.putBoolean("hide", false)
