@@ -16,7 +16,7 @@ import party.iobserver.matchsimulator.Constants.MATCHES
 import party.iobserver.matchsimulator.Constants.ME
 import party.iobserver.matchsimulator.Constants.TEAMS
 import party.iobserver.matchsimulator.R
-import party.iobserver.matchsimulator.SimApp
+import party.iobserver.matchsimulator.app
 import party.iobserver.matchsimulator.model.Team
 import party.iobserver.matchsimulator.util.AlertEnum
 import party.iobserver.matchsimulator.util.showFullDialog
@@ -41,7 +41,7 @@ class FragmentsAdapter(private val manager: FragmentManager) : FragmentPagerAdap
     override fun getCount() = 3
 }
 
-class TeamsAdapter(var list: MutableList<Team>, private val activity: Activity, val app: SimApp, val listener: CountChangeListener) : RecyclerView.Adapter<TeamsAdapter.TeamsViewHolder>() {
+class TeamsAdapter(private val activity: Activity, var list: MutableList<Team> = mutableListOf()) : RecyclerView.Adapter<TeamsAdapter.TeamsViewHolder>() {
     val EDIT_TEAM = 3
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TeamsViewHolder {
@@ -78,11 +78,9 @@ class TeamsAdapter(var list: MutableList<Team>, private val activity: Activity, 
             }
 
             teams_trash.setOnClickListener {
+                // TODO need eliminate associations
                 showFullDialog(activity, AlertEnum.WARNING, R.string.dialog_msg_delete) { _, _ ->
-                    app.appDatabase.teamDao().delete(list[position])
-                    list.removeAt(position)
-                    notifyDataSetChanged()
-                    listener.onCountChange(itemCount)
+                    activity.app.appDatabase.teamDao().delete(list[position])
                 }
             }
         }
@@ -91,8 +89,4 @@ class TeamsAdapter(var list: MutableList<Team>, private val activity: Activity, 
     class TeamsViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
 
-}
-
-interface CountChangeListener {
-    fun onCountChange(count: Int)
 }

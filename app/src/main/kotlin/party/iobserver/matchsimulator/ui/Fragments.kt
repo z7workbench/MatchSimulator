@@ -2,6 +2,7 @@ package party.iobserver.matchsimulator.ui
 
 import android.Manifest
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -30,15 +32,21 @@ import party.iobserver.matchsimulator.util.MatisseUtil
 
 
 class TeamsFragment : Fragment() {
-    lateinit var list: MutableList<Team>
     private lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_teams, container, false)
-        list = app.appDatabase.teamDao().all()
+        val teams = app.appDatabase.teamDao().all()
         val llm = LinearLayoutManager(context)
-        val teamsAdapter = TeamsAdapter(list, activity!!, app, object : CountChangeListener {
-            override fun onCountChange(count: Int) {
-                if (count == 0) {
+
+        val teamsAdapter = TeamsAdapter(activity!!)
+
+        teams.observe(this, Observer {
+            it?.apply {
+                val diffUtil = DiffUtil.calculateDiff(TeamsDiffCallback(teamsAdapter.list, it))
+                teamsAdapter.list = it
+                diffUtil.dispatchUpdatesTo(teamsAdapter)
+
+                if (teamsAdapter.itemCount == 0) {
                     rootView.placeholder.visibility = View.VISIBLE
                 } else {
                     rootView.placeholder.visibility = View.GONE
@@ -58,13 +66,11 @@ class TeamsFragment : Fragment() {
         return rootView
     }
 
-    override fun onResume() {
-        super.onResume()
-        rootView.apply {
-            (recycler.adapter as TeamsAdapter).list = app.appDatabase.teamDao().all()
-            recycler.adapter.notifyDataSetChanged()
-            (recycler.adapter as TeamsAdapter).listener.onCountChange(recycler.adapter.itemCount)
-        }
+    inner class TeamsDiffCallback(private val old: List<Team>, private val new: List<Team>) : DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = old[oldItemPosition].id == new[newItemPosition].id
+        override fun getOldListSize(): Int = old.size
+        override fun getNewListSize(): Int = new.size
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = old[oldItemPosition] == new[newItemPosition]
     }
 }
 

@@ -1,5 +1,6 @@
 package party.iobserver.matchsimulator.database
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import party.iobserver.matchsimulator.model.Expenses
 import party.iobserver.matchsimulator.model.Team
@@ -19,7 +20,7 @@ interface ExpensesDao {
 @Dao
 interface TeamDao {
     @Query("select * from teams")
-    fun all(): MutableList<Team>
+    fun all(): LiveData<MutableList<Team>>
 
     @Query("select * from teams where name = :name or alias = :alias")
     fun findByName(name: String, alias: String): MutableList<Team>

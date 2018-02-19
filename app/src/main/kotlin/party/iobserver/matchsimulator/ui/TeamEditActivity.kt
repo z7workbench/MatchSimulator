@@ -44,7 +44,9 @@ class TeamEditActivity : AppCompatActivity() {
             team = app.appDatabase.teamDao().findById(position).first()
             toolbar.title = getString(R.string.edit_team) + " " + team.name
 
+            name_text.isEnabled = false
             name_text.setText(team.name)
+            alias_text.isEnabled = false
             alias_text.setText(team.alias)
             attack_num.text = team.attack.toString()
             attack_bar.progress = ((team.attack - 25) * 10).toInt()
